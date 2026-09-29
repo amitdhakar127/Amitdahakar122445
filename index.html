@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Chat App</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef2f7;display:grid;place-items:center;min-height:100vh}.chat{width:min(420px,92vw);height:620px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 12px 35px rgba(0,0,0,.15);display:flex;flex-direction:column}.head{background:#2563eb;color:#fff;padding:18px 20px;font-size:20px;font-weight:700}.messages{flex:1;padding:20px;overflow:auto;background:#f8fafc}.msg{max-width:78%;padding:11px 14px;margin:10px 0;border-radius:16px;line-height:1.4}.bot{background:#e2e8f0}.me{background:#2563eb;color:#fff;margin-left:auto}.form{display:flex;gap:8px;padding:12px;border-top:1px solid #e5e7eb}.form input{flex:1;padding:12px;border:1px solid #cbd5e1;border-radius:12px;outline:none}.form button{border:0;background:#2563eb;color:#fff;padding:0 16px;border-radius:12px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <main class="chat">
+    <div class="head">💬 Simple Chat</div>
+    <div class="messages" id="messages">
+      <div class="msg bot">Hello! Welcome to the chat 👋</div>
+    </div>
+    <form class="form" id="chatForm">
+      <input id="input" placeholder="Type a message..." autocomplete="off">
+      <button>Send</button>
+    </form>
+  </main>
+  <script>
+    const form=document.getElementById('chatForm'),input=document.getElementById('input'),messages=document.getElementById('messages');
+    form.addEventListener('submit',e=>{e.preventDefault();const text=input.value.trim();if(!text)return;messages.insertAdjacentHTML('beforeend',`<div class="msg me"></div>`);messages.lastElementChild.textContent=text;input.value='';messages.insertAdjacentHTML('beforeend','<div class="msg bot">Message received! 👍</div>');messages.scrollTop=messages.scrollHeight;});
+  </script>
+</body>
+</html>
